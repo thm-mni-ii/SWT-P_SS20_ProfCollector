@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "328802429033",
+    "firebase_url": "https://mmo-spiel-1920.firebaseio.com",
+    "project_id": "mmo-spiel-1920",
+    "storage_bucket": "mmo-spiel-1920.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328802429033:android:0181075ffc9c2260165af8",
+        "android_client_info": {
+          "package_name": "com.THM.MMO1920"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328802429033-nm696kqlj89ldgee7vmia9gp6bc7hp16.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBYaD9vt4ZTRkjyMbCAyX6Nnk47fSc4Rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328802429033-nm696kqlj89ldgee7vmia9gp6bc7hp16.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
