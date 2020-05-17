@@ -164,7 +164,7 @@ public class Login : MonoBehaviour
         GameObject NM = GameObject.FindWithTag("NetworkManager");
         if (NM != null) manager = NM.GetComponent<NetworkManager>();
         //Firebase configuration
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mmo-spiel-1920.firebaseio.com"); //setup database url
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://swt-p-ss20-profcollector.firebaseio.com/"); //setup database url
         reference = FirebaseDatabase.DefaultInstance.RootReference;
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
     }

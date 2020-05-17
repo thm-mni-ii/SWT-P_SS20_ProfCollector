@@ -141,7 +141,7 @@ public class PlayerMovement : NetworkBehaviour
     void Start()
     {
         // Set up the Editor before calling into the realtime database.
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mmo-spiel-1920.firebaseio.com");
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://swt-p-ss20-profcollector.firebaseio.com/");
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
         FirebaseDatabase.DefaultInstance.GetReference("Modules").GetValueAsync().ContinueWith(task => {
