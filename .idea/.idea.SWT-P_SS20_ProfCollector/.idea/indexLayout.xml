@@ -19,9 +19,11 @@
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>Games</Path>
       <Path>InstanceBuilds</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Temp</Path>
       <Path>docs</Path>
       <Path>obj</Path>
     </explicitExcludes>

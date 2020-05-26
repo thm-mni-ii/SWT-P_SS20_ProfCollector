@@ -24,6 +24,7 @@ TagManager:
   - GDI
   - OOP
   - RNAI
+  - GameSphere
   layers:
   - Default
   - TransparentFX
