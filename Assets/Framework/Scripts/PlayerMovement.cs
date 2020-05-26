@@ -318,6 +318,12 @@ public class PlayerMovement : NetworkBehaviour
         {
             if (!isLocalPlayer || characterController == null) return;
 
+            if (other.tag.Equals("GameSphere"))
+            {
+                other.GetComponent<GameStarter>().enabled = true;
+            }
+            
+            /* old code
             clientVar.setGamesRef(this.Games);
             if (isAvaiableModule(other.gameObject.tag))
             {
@@ -326,12 +332,14 @@ public class PlayerMovement : NetworkBehaviour
                 clientVar.updateStartGameUI();
                 clientVar.partyTextField.DeactivateInputField();
             }
+            */
         }
 
         /// <summary>
         /// Check if the Module exists on the Database this Methode is needed to find out which Magic circle the player is standing on
         /// </summary>
         private bool isAvaiableModule(string moduleName) {
+            
             if (Modules.Contains(moduleName))
             {   
                 return true;
@@ -347,10 +355,17 @@ public class PlayerMovement : NetworkBehaviour
         private void OnTriggerExit(Collider other)
         {
             if (!isLocalPlayer || characterController == null) return;
+            
+            if (other.tag.Equals("GameSphere"))
+            {
+                other.GetComponent<GameStarter>().enabled = false;
+            }
+            /*
             if (isAvaiableModule(other.gameObject.tag))
             {
                 clientVar.setgameType(null);
                 globalCanvas.ToggleCanvas("gameOff");
             }
+            */
         }
     }
