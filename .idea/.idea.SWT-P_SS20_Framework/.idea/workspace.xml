@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="302555a7-91cd-463e-aa7c-929bcd9926f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/CardLoader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Framework/Prefab/Inventory/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Framework/Prefab/Inventory/Canvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Framework/Scenes/MultiplayerMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Framework/Scenes/MultiplayerMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Framework/Scripts/CardInfo.cs" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/PreprocessorDefine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Tests/SyncSetTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/AdditiveScenes/Scripts/ZoneHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/Ninja.WebSockets/Internal/Events.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/Ninja.WebSockets/Internal/WebSocketImplementation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/Ninja.WebSockets/Internal/BinaryReaderWriter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/Ninja.WebSockets/Internal/WebSocketFrameCommon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/ListServer/ListServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/SyncListProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/CommandProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/MessageClassProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/Ninja.WebSockets/WebSocketClientOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/SyncObjectProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/NetworkBehaviourProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomOverviewGUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/SyncDictionaryProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FC9AF2AB-0C17-47AF-9C65-6A6A6CF09E15/f9/98a3d8ab/DataSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/HostRoom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/SyncListStructProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Tanks/Scripts/Tank.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/SyncListInitializer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/ReaderWriterProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/AdditiveScenes/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/TargetRpcProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/SyncEventProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/Server.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/WebsocketTransport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/ServerHUD.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/AdditiveScenes/Scripts/AdditiveNetworkManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Table.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/Utils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/BelohnungSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/Common.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/GlobalManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/Server.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/LoginSystem/Login.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomPlayerContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/LoginSystem/UserInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Party.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Client.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Game.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Server.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkRoomPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkRoomManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkTransform.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkAnimator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkTransformBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Tests/SyncListTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/LLAPITransport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Tests/NetworkWriterTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/Item.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/CardMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Tests/SyncVarTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Transport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomGUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Tests/WeaverTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkProximityChecker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Tests/SyncDictionaryTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Room/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Room/Scripts/NetworkRoomManagerExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/ClientScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Room/Scripts/Reward.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Room/Scripts/OfflineGUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FC9AF2AB-0C17-47AF-9C65-6A6A6CF09E15/e4/dc3d11d2/DatabaseReference.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/MessagePacker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkIdentity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/Inventory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/SyncList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/InventorySlot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/AdditiveScenes/Scripts/ShootingTankBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/48050808-8AEE-40CA-B708-18FF164A29D5/b7/707995ca/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkStartPosition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManagerHUD.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FC9AF2AB-0C17-47AF-9C65-6A6A6CF09E15/86/f9056a58/InternalDataSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Pong/Scripts/Ball.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Pong/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Pong/Scripts/NetworkManagerPong.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/SyncDictionary.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/DatabaseUser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/UNetwork.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/94/9a1ef732/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/SyncObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkWriter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/SyncSet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Messages.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/FloatBytePacker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/ScrollRect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/CustomAttributes.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomReaderWriter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/BlinkingUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/CompilationFinishedHook.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/Room.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/GameLobbyController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/NetworkManagerEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/NetworkIdentityEditor.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/PlayerInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Server.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Client.cs" />
+        <option value="$PROJECT_DIR$/Assets/GameLobby.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoomGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomReaderWriter - Copy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/PlayerInfoReaderWriter.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoomListGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/LobbyGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoomListContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoomOverviewGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/LoginSystem/RoomPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/GameStarter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomPlayerContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/HostRoom.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/GameLobbyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Room.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoomContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomReaderWriter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomClient.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/Room.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/InventoryUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/Item.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkStartPosition.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/CameraController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/DatabaseUser.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Examples/Room/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/CardInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/CardLoader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/LoginSystem/Login.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/InventorySlot.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/Inventory.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Inventory/CardMachine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/BelohnungSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomClient.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/Chat-PartySystem/Game.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/GlobalManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/HostRoom.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomPlayerContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/GameLobbyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/RoomSystem/RoomOverviewGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Scripts/BlinkingUI.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cifZNhgPKidGnMaDciYQwCJSAw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="302555a7-91cd-463e-aa7c-929bcd9926f9" name="Default Changelist" comment="" />
+      <created>1591016389347</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591016389347</updated>
+      <workItem from="1591016399626" duration="11697000" />
+      <workItem from="1591613942192" duration="17901000" />
+      <workItem from="1591680820450" duration="27971000" />
+      <workItem from="1591710215990" duration="4309000" />
+      <workItem from="1591767728924" duration="7845000" />
+      <workItem from="1592222344076" duration="1271000" />
+      <workItem from="1592243012650" duration="3074000" />
+      <workItem from="1592287123590" duration="7357000" />
+      <workItem from="1592313880458" duration="762000" />
+      <workItem from="1592416204042" duration="6647000" />
+      <workItem from="1592481587070" duration="10617000" />
+      <workItem from="1592553496031" duration="7759000" />
+      <workItem from="1592586964952" duration="1929000" />
+      <workItem from="1592635782240" duration="531000" />
+      <workItem from="1592659320400" duration="956000" />
+      <workItem from="1592734098162" duration="8191000" />
+      <workItem from="1592745839418" duration="1411000" />
+      <workItem from="1592922307414" duration="11483000" />
+      <workItem from="1593416943187" duration="720000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1047" y="423" key="RiderGenerateDialog" timestamp="1592486719758">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1047" y="423" key="RiderGenerateDialog/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1592486719758" />
+    <state x="1047" y="423" key="RiderGenerateDialog/0.0.2560.1400/-1920.161.1920.1040@0.0.2560.1400" timestamp="1591700944652" />
+    <state x="92" y="92" width="2376" height="1217" key="VCS.FileHistoryDialog" timestamp="1592554357729">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="92" y="92" width="2376" height="1217" key="VCS.FileHistoryDialog/-1920.160.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1592554357729" />
+    <state x="-1851" y="228" width="1782" height="904" key="VCS.FileHistoryDialog/0.0.2560.1400/-1920.160.1920.1040@-1920.160.1920.1040" timestamp="1592497605441" />
+    <state x="92" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1592244808309" />
+    <state x="92" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog/0.0.2560.1400/-1920.162.1920.1040@0.0.2560.1400" timestamp="1591018351850" />
+    <state x="871" y="512" width="666" height="530" key="find.popup" timestamp="1592938014675">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="871" y="512" width="666" height="530" key="find.popup/-1920.160.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1592553863281" />
+    <state x="871" y="512" width="666" height="530" key="find.popup/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1592938014675" />
+    <state x="871" y="512" width="666" height="530" key="find.popup/0.0.2560.1400/-1920.161.1920.1040@0.0.2560.1400" timestamp="1591774982756" />
+    <state x="947" y="435" width="666" height="530" key="find.popup/0.0.2560.1400/-1920.162.1920.1040@0.0.2560.1400" timestamp="1591018478570" />
+    <state x="936" y="330" width="672" height="677" key="run.anything.popup" timestamp="1592484861855">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="330" width="672" height="677" key="run.anything.popup/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1592484861855" />
+    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.161.1920.1040@0.0.2560.1400" timestamp="1591711692274" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1592924464167">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1592924464167" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/-1920.161.1920.1040@0.0.2560.1400" timestamp="1591698407900" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/-1920.162.1920.1040@0.0.2560.1400" timestamp="1591025617987" />
+  </component>
+</project>

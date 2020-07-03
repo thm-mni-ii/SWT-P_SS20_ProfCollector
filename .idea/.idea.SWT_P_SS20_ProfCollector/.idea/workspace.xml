@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="98120b1b-afc7-469e-bbd1-2dec65045c88" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/ProfCollector/Scripts/CardContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/LocalConnections.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ProfCollector/Scripts/GameServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/48050808-8AEE-40CA-B708-18FF164A29D5/77/134737cb/Random.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/AdditiveScenes/Scripts/ZoneHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkLobbyManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/Ninja.WebSockets/WebSocketClientFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/ListServer/ListServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnectionToServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkWriter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Websocket/WebsocketTransport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManagerHUD.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Authenticators/BasicAuthenticator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/google-services.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/TelepathyTransport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Room/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Components/NetworkRoomManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Examples/Basic/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/FloatBytePacker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/CompilationFinishedHook.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/21BBF68D-61D6-4A2A-A5C3-E180E6B6706D/17/547c7f00/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Weaver.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Tests/NetworkWriterTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ProfCollector/Scripts/Util/ShuffleUtil.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Runtime/ClientScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ProfCollector/Scripts/CardInfo.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Shuffle.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/Classes/PlayerInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/Classes/CardContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Examples/Room/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/Classes/QuartettPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/Classes/GameServer.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoundSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoundController.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/Classes/QuartettClient.cs" />
+        <option value="$PROJECT_DIR$/Assets/ObjectManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/CardPopup.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/CardInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/CardContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/Util/Shuffle.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProfCollector/Scripts/Util/ShuffleUtil.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1e19bgqxvZhNvIlWlHmTuHaGCpr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98120b1b-afc7-469e-bbd1-2dec65045c88" name="Default Changelist" comment="" />
+      <created>1593478305324</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593478305324</updated>
+      <workItem from="1593478330462" duration="1098000" />
+      <workItem from="1593508462867" duration="760000" />
+      <workItem from="1593515183452" duration="22654000" />
+      <workItem from="1593540872156" duration="1174000" />
+      <workItem from="1593597458602" duration="9283000" />
+      <workItem from="1593634822373" duration="17595000" />
+      <workItem from="1593680038793" duration="911000" />
+      <workItem from="1593763215939" duration="5514000" />
+      <workItem from="1593784473498" duration="809000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1073" y="415" key="RiderGenerateDialog" timestamp="1593527338264">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1073" y="415" key="RiderGenerateDialog/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1593527338264" />
+    <state x="947" y="435" width="666" height="554" key="find.popup" timestamp="1593764891690">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="947" y="435" width="666" height="554" key="find.popup/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1593764891690" />
+    <state x="936" y="330" key="run.anything.popup" timestamp="1593542035294">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1593542035294" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1593784509731">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/-1920.160.1920.1040@0.0.2560.1400" timestamp="1593784509731" />
+  </component>
+</project>
