@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Gamescene.unity
+- path: Assets/ProfCollector/Scenes/ServerLoadingScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
