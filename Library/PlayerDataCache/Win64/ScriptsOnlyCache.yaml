@@ -6,8 +6,8 @@ ScriptsOnlyBuild:
     - CardPopup
     - GameServer
     - ObjectManager
-    - QuartettPlayer
-    - RoundSystem
+    - QuartettClient
+    - RoundController
     Mirror.Components.dll:
     - Mirror.NetworkTransform
     Mirror.Examples.dll:
@@ -66,33 +66,33 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11232}
+      Script: {instanceID: 11790}
     - Class: 114
-      Script: {instanceID: 11350}
+      Script: {instanceID: 11906}
     - Class: 114
-      Script: {instanceID: 11438}
+      Script: {instanceID: 11990}
     - Class: 114
-      Script: {instanceID: 11452}
+      Script: {instanceID: 12004}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 12048}
     - Class: 114
-      Script: {instanceID: 11638}
+      Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 11972}
+      Script: {instanceID: 12504}
     - Class: 114
-      Script: {instanceID: 12292}
+      Script: {instanceID: 12818}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12950}
     - Class: 114
-      Script: {instanceID: 12526}
+      Script: {instanceID: 13042}
     - Class: 114
-      Script: {instanceID: 12554}
+      Script: {instanceID: 13068}
     - Class: 114
-      Script: {instanceID: 13028}
+      Script: {instanceID: 13532}
     - Class: 114
-      Script: {instanceID: 13078}
+      Script: {instanceID: 13578}
     - Class: 114
-      Script: {instanceID: 13476}
+      Script: {instanceID: 13964}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -139,33 +139,33 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11230}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 11232}
+      Script: {instanceID: 11790}
     - Class: 114
-      Script: {instanceID: 11310}
+      Script: {instanceID: 11866}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11872}
     - Class: 114
-      Script: {instanceID: 11452}
+      Script: {instanceID: 12004}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 12048}
     - Class: 114
-      Script: {instanceID: 11972}
+      Script: {instanceID: 12504}
     - Class: 114
-      Script: {instanceID: 12136}
+      Script: {instanceID: 12666}
     - Class: 114
-      Script: {instanceID: 12184}
+      Script: {instanceID: 12712}
     - Class: 114
-      Script: {instanceID: 12380}
+      Script: {instanceID: 12904}
     - Class: 114
-      Script: {instanceID: 13028}
+      Script: {instanceID: 13532}
     - Class: 114
-      Script: {instanceID: 13078}
+      Script: {instanceID: 13578}
     - Class: 114
-      Script: {instanceID: 13254}
+      Script: {instanceID: 13750}
     - Class: 114
-      Script: {instanceID: 13476}
+      Script: {instanceID: 13964}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -228,7 +228,7 @@ ScriptsOnlyBuild:
       Hash: 6fd2bb55b3ee5edb6040a1c5bccd0e07
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: QuartettPlayer
+    className: QuartettClient
   - hash:
       serializedVersion: 2
       Hash: f7466eeca916d245e1d0c780764098bc
@@ -522,7 +522,7 @@ ScriptsOnlyBuild:
       Hash: 6fd2bb55b3ee5edb6040a1c5bccd0e07
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: RoundSystem
+    className: RoundController
   - hash:
       serializedVersion: 2
       Hash: e87f50864f8a979f1228e8c69bd62658
@@ -875,4 +875,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/ProfCollector/Scenes/ServerLoadingScene.unity
   - Assets/ProfCollector/Scenes/Gamescene.unity
-  playerPath: D:/Documents/Uni/ExampleBuild1/Games/Quartett/Quartett.exe
+  playerPath: D:/Documents/Uni/ExampleBuild1/Games/Quartett/Profcollector.exe
