@@ -57,7 +57,7 @@ public class CardPopup : MonoBehaviour
             int x = i + 1;
             cardProperties[i].onClick.AddListener(() =>
             {
-                ClientScene.localPlayer.GetComponent<QuartettClient>().ChooseProperty(x);
+                ClientScene.localPlayer.GetComponent<QuartettClient>().TryChooseProperty(x);
                 disableButtons();
             });
         }

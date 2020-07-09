@@ -39,6 +39,8 @@ public class GameServer : NetworkManager
     
     public PlayerInfo LocalPlayerInfo => localPlayerInfo;
     public static GameServer Instance => (GameServer) singleton;
+
+    private bool mockIsHost;
     
     /// <summary>
     /// Start is called before the first frame update.
