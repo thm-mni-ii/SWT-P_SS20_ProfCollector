@@ -11,39 +11,11 @@ using UnityEngine.UI;
 /// </summary>
 public class ObjectManager : MonoBehaviour
 {
+    # region variables & getter & setup
     /// <summary>
     /// Singleton instance
     /// </summary>
     private static ObjectManager instance;
-
-    public static ObjectManager Instance => instance;
-
-    /// <summary>
-    /// Initializes singleton instance.
-    /// </summary>
-    /// <exception cref="Exception">If there is more than one instance</exception>
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            throw new Exception("Multiple ObjectMangers exist!");
-        }
-        instance = this;
-    }
-
-    /// <summary>
-    /// Initializes GUI.
-    /// </summary>
-    private void Start()
-    {
-        DisableCardAGUI();
-        DisableCardBGUI();
-        this.playerACardsAmountText.text = RoundController.CARDS_PER_DECK.ToString();
-        this.playerBCardsAmountText.text = RoundController.CARDS_PER_DECK.ToString();
-        toggleHighlightCardA(false);
-        toggleHighlightCardB(false);
-        HideHint();
-    }
 
     /// <summary>
     /// Top card of player A's deck
@@ -84,13 +56,56 @@ public class ObjectManager : MonoBehaviour
     /// Hint text for giving instructions
     /// </summary>
     [SerializeField] private Text hintText;
+
+    /// <summary>
+    /// Confetti over player A
+    /// </summary>
+    [SerializeField] private GameObject confettiA;
     
+    /// <summary>
+    /// Confetti over player B
+    /// </summary>
+    [SerializeField] private GameObject confettiB;
+
     public CardPopup PlayerACardGui => playerACardGUI;
 
     public CardPopup PlayerBCardGui => playerBCardGUI;
 
     public LightController SceneLight => sceneLight;
 
+    public static ObjectManager Instance => instance;
+
+    /// <summary>
+    /// Initializes singleton instance.
+    /// </summary>
+    /// <exception cref="Exception">If there is more than one instance</exception>
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            throw new Exception("Multiple ObjectMangers exist!");
+        }
+        instance = this;
+    }
+
+    /// <summary>
+    /// Initializes GUI.
+    /// </summary>
+    private void Start()
+    {
+        DisableCardAGUI();
+        DisableCardBGUI();
+        this.playerACardsAmountText.text = RoundController.CARDS_PER_DECK.ToString();
+        this.playerBCardsAmountText.text = RoundController.CARDS_PER_DECK.ToString();
+        ToggleHighlightCardA(false);
+        ToggleHighlightCardB(false);
+        HideHint();
+    }
+    
+    #endregion
+    
+    # region ui related
+    
     /// <summary>
     /// Loads the GUI for player A's card.
     /// </summary>
@@ -150,7 +165,7 @@ public class ObjectManager : MonoBehaviour
     /// Toggles the highlight of player A's card.
     /// </summary>
     /// <param name="turnOn">Should the highlight be turned on</param>
-    public void toggleHighlightCardA(bool turnOn)
+    public void ToggleHighlightCardA(bool turnOn)
     {
         cardA.toggleHighlight(turnOn);
     }
@@ -159,7 +174,7 @@ public class ObjectManager : MonoBehaviour
     /// Toggles the highlight of player B's card.
     /// </summary>
     /// <param name="turnOn">Should the highlight be turned on</param>
-    public void toggleHighlightCardB(bool turnOn)
+    public void ToggleHighlightCardB(bool turnOn)
     {
         cardB.toggleHighlight(turnOn);
     }
@@ -182,4 +197,22 @@ public class ObjectManager : MonoBehaviour
         hintText.text = "";
         hintText.enabled = false;
     }
+
+    /// <summary>
+    /// Turns on the confetti for a player.
+    /// </summary>
+    /// <param name="playerRole">Player who's confetti will be turned on</param>
+    public void TurnOnConfetti(PlayerRole playerRole)
+    {
+        if (playerRole == PlayerRole.PLAYER_A)
+        {
+            confettiA.SetActive(true);
+        }
+        else
+        {
+            confettiB.SetActive(true);
+        }
+    }
+    
+    #endregion
 }

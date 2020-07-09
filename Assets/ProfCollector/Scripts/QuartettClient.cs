@@ -20,6 +20,7 @@ public enum PlayerRole{PLAYER_A, PLAYER_B}
 /// </summary>
 public class QuartettClient : NetworkBehaviour
 {
+    # region variables
     /// <summary>
     /// Role of the player
     /// </summary>
@@ -50,6 +51,9 @@ public class QuartettClient : NetworkBehaviour
     /// </summary>
     private bool isInRangeOfDeck;
 
+    #endregion
+    
+    #region setup & unity functions
     /// <summary>
     /// Start is called before the first frame update.
     /// Sets player role and loads inventory data.
@@ -94,15 +98,56 @@ public class QuartettClient : NetworkBehaviour
     }
     
     /// <summary>
-    /// Connects the player to the game.
+    /// Update is called once per frame.
+    /// Processes input.
     /// </summary>
-    /// <param name="playerRole">Role of the player</param>
-    /// <param name="cardIds">Cards that the player will use</param>
-    [Command]
-    private void CmdConnectToGame(PlayerRole playerRole, int[] cardIds)
+    void Update()
     {
-        RoundController.Instance.ConnectToGame(playerRole,cardIds);
+        if (!hasAuthority) return;
+        if (isLocalPlayer)
+        {
+            if (cardsCanBeLoaded)
+            {
+                LoadCardData();
+            }
+
+            if (IsLegalMove() && isInRangeOfDeck && Input.GetKeyDown(KeyCode.T))
+            {
+                CmdPickUpCard();
+                ObjectManager.Instance.HideHint();
+            }
+        }
     }
+    
+    /// <summary>
+    /// Checks if the player walked next to his deck.
+    /// </summary>
+    /// <param name="other">Trigger that entered</param>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsLocalPlayersCard(other.tag))
+        {
+            isInRangeOfDeck = true;
+            
+            if(IsLegalMove()){
+                ObjectManager.Instance.ShowHint("Press <color=#BC3644><b>T</b></color>\nto draw a Card");
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Checks if the player walked away from his deck.
+    /// </summary>
+    /// <param name="other">Trigger that entered</param>
+    private void OnTriggerExit(Collider other)
+    {
+        if (IsLocalPlayersCard(other.tag))
+        {
+            ObjectManager.Instance.HideHint();
+            isInRangeOfDeck = false;
+        }
+    }
+    
     /// <summary>
     /// Loads inventory data from database.
     /// </summary>
@@ -129,6 +174,7 @@ public class QuartettClient : NetworkBehaviour
                 }
             });
     }
+    
 
     /// <summary>
     /// Workaround: Cards somehow can't be loaded into inventory during database request (causes weird behaviour).
@@ -156,38 +202,10 @@ public class QuartettClient : NetworkBehaviour
         
     }
 
-    /// <summary>
-    /// Updates the GUI of the cards after a player drew a card.
-    /// </summary>
-    /// <param name="playerRole">Player that drew a card</param>
-    /// <param name="cardId">Card that was drawn</param>
-    private void UpdatedCardGUI(PlayerRole playerRole, int cardId)
-    {
-        if (this.playerRole.Equals(playerRole))
-        {
-            if (playerRole == PlayerRole.PLAYER_A)
-            {
-                ObjectManager.Instance.toggleHighlightCardA(false);
-                ObjectManager.Instance.LoadCardAGUI(cardId);
+    # endregion
 
-                if (clientState.Equals(RoundState.PLAYER_A_FIRST_TURN))
-                {
-                    ObjectManager.Instance.PlayerACardGui.AllPropertiesStartBlinking();
-                } 
-            }
-            else
-            {
-                ObjectManager.Instance.toggleHighlightCardB(false);
-                ObjectManager.Instance.LoadCardBGUI(cardId);  
-            
-                if (clientState.Equals(RoundState.PLAYER_B_FIRST_TURN))
-                {
-                    ObjectManager.Instance.PlayerBCardGui.AllPropertiesStartBlinking();
-                }
-            }   
-        }
-    }
-
+    # region commands & rpcs
+    
     /// <summary>
     /// Sends an rpc to the client after a player drew a card.
     /// </summary>
@@ -220,62 +238,16 @@ public class QuartettClient : NetworkBehaviour
     }
     
     /// <summary>
-    /// Update is called once per frame.
-    /// Processes input.
+    /// Connects the player to the game.
     /// </summary>
-    void Update()
+    /// <param name="playerRole">Role of the player</param>
+    /// <param name="cardIds">Cards that the player will use</param>
+    [Command]
+    private void CmdConnectToGame(PlayerRole playerRole, int[] cardIds)
     {
-        if (!hasAuthority) return;
-        if (isLocalPlayer)
-        {
-            if (cardsCanBeLoaded)
-            {
-                LoadCardData();
-            }
-
-            if (IsLegalMove() && isInRangeOfDeck && Input.GetKeyDown(KeyCode.T))
-            {
-                CmdPickUpCard();
-                ObjectManager.Instance.HideHint();
-            }
-        }
-    }
-
-    /// <summary>
-    /// Checks if the card that the player clicked is his own.
-    /// </summary>
-    /// <param name="cardTag">Tag of the card that was clicked</param>
-    /// <returns>Is this the card of the local player</returns>
-    private bool IsLocalPlayersCard(string cardTag)
-    {
-        return playerRole.Equals(PlayerRole.PLAYER_A) && cardTag.Equals("CardA")
-               || playerRole.Equals(PlayerRole.PLAYER_B) && cardTag.Equals("CardB");
+        RoundController.Instance.ConnectToGame(playerRole,cardIds);
     }
     
-    /// <summary>
-    /// Checks if the move that the player is trying to make is allowed. 
-    /// </summary>
-    /// <returns>Is this move legal</returns>
-    private bool IsLegalMove()
-    {
-        return (playerRole.Equals(PlayerRole.PLAYER_A) && (clientState.Equals(RoundState.PLAYER_A_FIRST_TURN) 
-                                                           || clientState.Equals(RoundState.PLAYER_A_SECOND_TURN))
-                || (playerRole.Equals(PlayerRole.PLAYER_B) && (clientState.Equals(RoundState.PLAYER_B_FIRST_TURN)
-                                                               || clientState.Equals(RoundState.PLAYER_B_SECOND_TURN))));
-    }
-
-    /// <summary>
-    /// Chooses a property to compare.
-    /// </summary>
-    /// <param name="valIdx">Property to compare</param>
-    public void ChooseProperty(int valIdx)
-    {
-        if (IsLegalMove())
-        {
-            CmdProcessMove(valIdx);
-        }
-    }
-
     /// <summary>
     /// Sends the move that was made by the client to the server for processing.
     /// </summary>
@@ -310,6 +282,131 @@ public class QuartettClient : NetworkBehaviour
     {
         ObjectManager.Instance.ShowHint(waitTimer);
     }
+    
+    #endregion
+    
+    #region utility & ui
+    /// <summary>
+    /// Checks if the card that the player clicked is his own.
+    /// </summary>
+    /// <param name="cardTag">Tag of the card that was clicked</param>
+    /// <returns>Is this the card of the local player</returns>
+    private bool IsLocalPlayersCard(string cardTag)
+    {
+        return playerRole.Equals(PlayerRole.PLAYER_A) && cardTag.Equals("CardA")
+               || playerRole.Equals(PlayerRole.PLAYER_B) && cardTag.Equals("CardB");
+    }
+    
+    /// <summary>
+    /// Checks if the move that the player is trying to make is allowed. 
+    /// </summary>
+    /// <returns>Is this move legal</returns>
+    private bool IsLegalMove()
+    {
+        return (playerRole.Equals(PlayerRole.PLAYER_A) && (clientState.Equals(RoundState.PLAYER_A_FIRST_TURN) 
+                                                           || clientState.Equals(RoundState.PLAYER_A_SECOND_TURN))
+                || (playerRole.Equals(PlayerRole.PLAYER_B) && (clientState.Equals(RoundState.PLAYER_B_FIRST_TURN)
+                                                               || clientState.Equals(RoundState.PLAYER_B_SECOND_TURN))));
+    }
+    
+    /// <summary>
+    /// Chooses a property to compare. (Used by buttons).
+    /// </summary>
+    /// <param name="valIdx">Property to compare</param>
+    public void TryChooseProperty(int valIdx)
+    {
+        if (IsLegalMove())
+        {
+            CmdProcessMove(valIdx);
+        }
+    }
+    
+    /// <summary>
+    /// Checks if the draw a card hint should be shown.
+    /// </summary>
+    private void CheckDrawCardHint()
+    {
+        if (isInRangeOfDeck && IsLegalMove())
+        {
+            ObjectManager.Instance.ShowHint("Press <color=#BC3644><b>T</b></color>\nto draw a Card");
+        }
+    }
+
+    /// <summary>
+    /// Updates the hint text, depending on which player won.
+    /// </summary>
+    /// <param name="winner">Player that won</param>
+    private void ProcessGameOver(PlayerRole winner)
+    {
+        if (playerRole.Equals(winner))
+        {
+            ObjectManager.Instance.ShowHint("YOU WON !");
+        }
+        else
+        {
+            ObjectManager.Instance.ShowHint("YOU LOST !");
+        }
+    }
+
+    /// <summary>
+    /// Gets the enemies player object.
+    /// </summary>
+    /// <returns>Enemy player's object</returns>
+    private GameObject GetEnemyPlayer()
+    {
+        if (playerRole == PlayerRole.PLAYER_A)
+        {
+            return GameObject.FindGameObjectWithTag("PLAYER_B");
+        }
+        else
+        {
+            return GameObject.FindGameObjectWithTag("PLAYER_A");
+        }
+    }
+
+    /// <summary>
+    /// Quits the application after 10 seconds.
+    /// </summary>
+    /// <returns>Wait time</returns>
+    private IEnumerator GameQuitter()
+    {
+        yield return new WaitForSeconds(10);
+        Application.Quit(0);
+    }
+    
+    /// <summary>
+    /// Updates the GUI of the cards after a player drew a card.
+    /// </summary>
+    /// <param name="playerRole">Player that drew a card</param>
+    /// <param name="cardId">Card that was drawn</param>
+    private void UpdatedCardGUI(PlayerRole playerRole, int cardId)
+    {
+        if (this.playerRole.Equals(playerRole))
+        {
+            if (playerRole == PlayerRole.PLAYER_A)
+            {
+                ObjectManager.Instance.ToggleHighlightCardA(false);
+                ObjectManager.Instance.LoadCardAGUI(cardId);
+
+                if (clientState.Equals(RoundState.PLAYER_A_FIRST_TURN))
+                {
+                    ObjectManager.Instance.PlayerACardGui.AllPropertiesStartBlinking();
+                } 
+            }
+            else
+            {
+                ObjectManager.Instance.ToggleHighlightCardB(false);
+                ObjectManager.Instance.LoadCardBGUI(cardId);  
+            
+                if (clientState.Equals(RoundState.PLAYER_B_FIRST_TURN))
+                {
+                    ObjectManager.Instance.PlayerBCardGui.AllPropertiesStartBlinking();
+                }
+            }   
+        }
+    }
+    
+    #endregion
 
     /// <summary>
     /// Updates the GUI for the current state of the game.
@@ -329,14 +426,14 @@ public class QuartettClient : NetworkBehaviour
                 ObjectManager.Instance.SceneLight.ResetLight();
                 ObjectManager.Instance.PlayerACardGui.TurnOffAllPropertyHighlights();
                 ObjectManager.Instance.PlayerBCardGui.TurnOffAllPropertyHighlights();
-                ObjectManager.Instance.toggleHighlightCardA(true);
+                ObjectManager.Instance.ToggleHighlightCardA(true);
                 ObjectManager.Instance.DisableCardAGUI();
                 ObjectManager.Instance.DisableCardBGUI();
                 break;
             case RoundState.PLAYER_B_SECOND_TURN:
                 CheckDrawCardHint();
                 ObjectManager.Instance.PlayerACardGui.AllPropertiesStopBlinking();
-                ObjectManager.Instance.toggleHighlightCardB(true);
+                ObjectManager.Instance.ToggleHighlightCardB(true);
                 ObjectManager.Instance.DisableCardBGUI();
                 ObjectManager.Instance.LoadCardAGUI(playerACardId);
                 ObjectManager.Instance.PlayerACardGui.HighlightProperty(true,valIdx);
@@ -347,21 +444,31 @@ public class QuartettClient : NetworkBehaviour
                 ObjectManager.Instance.SceneLight.ResetLight();
                 ObjectManager.Instance.PlayerACardGui.TurnOffAllPropertyHighlights();
                 ObjectManager.Instance.PlayerBCardGui.TurnOffAllPropertyHighlights();
-                ObjectManager.Instance.toggleHighlightCardB(true);
+                ObjectManager.Instance.ToggleHighlightCardB(true);
                 ObjectManager.Instance.DisableCardAGUI();
                 ObjectManager.Instance.DisableCardBGUI();
                 break;
             case RoundState.PLAYER_A_SECOND_TURN:
                 CheckDrawCardHint();
                 ObjectManager.Instance.PlayerBCardGui.AllPropertiesStopBlinking();
-                ObjectManager.Instance.toggleHighlightCardA(true);
+                ObjectManager.Instance.ToggleHighlightCardA(true);
                 ObjectManager.Instance.DisableCardAGUI();
                 ObjectManager.Instance.LoadCardBGUI(playerBCardId);
                 ObjectManager.Instance.PlayerBCardGui.HighlightProperty(true,valIdx);
                 break;
             case RoundState.PLAYER_A_WON:
+                ObjectManager.Instance.TurnOnConfetti(PlayerRole.PLAYER_A);
+                ProcessGameOver(PlayerRole.PLAYER_A);
+                ObjectManager.Instance.DisableCardAGUI();
+                ObjectManager.Instance.DisableCardBGUI();
+                StartCoroutine(GameQuitter());
                 break;
             case RoundState.PLAYER_B_WON:
+                ObjectManager.Instance.TurnOnConfetti(PlayerRole.PLAYER_B);
+                ProcessGameOver(PlayerRole.PLAYER_B);
+                ObjectManager.Instance.DisableCardAGUI();
+                ObjectManager.Instance.DisableCardBGUI();
+                StartCoroutine(GameQuitter());
                 break;
             case RoundState.WAIT_FOR_NEXT_ROUND:
                 ObjectManager.Instance.LoadCardAGUI(playerACardId);
@@ -400,61 +507,4 @@ public class QuartettClient : NetworkBehaviour
                 break;
         }
     }
-
-    /// <summary>
-    /// Checks if the player walked next to his deck.
-    /// </summary>
-    /// <param name="other">Trigger that entered</param>
-    private void OnTriggerEnter(Collider other)
-    {
-        if (IsLocalPlayersCard(other.tag))
-        {
-            isInRangeOfDeck = true;
-            
-            if(IsLegalMove()){
-                ObjectManager.Instance.ShowHint("Press <color=#BC3644><b>T</b></color>\nto draw a Card");
-            }
-        }
-    }
-
-    /// <summary>
-    /// Checks if the draw a card hint should be shown.
-    /// </summary>
-    private void CheckDrawCardHint()
-    {
-        if (isInRangeOfDeck && IsLegalMove())
-        {
-            ObjectManager.Instance.ShowHint("Press <color=#BC3644><b>T</b></color>\nto draw a Card");
-        }
-    }
-    
-    /// <summary>
-    /// Checks if the player walked away from his deck.
-    /// </summary>
-    /// <param name="other">Trigger that entered</param>
-    private void OnTriggerExit(Collider other)
-    {
-        if (IsLocalPlayersCard(other.tag))
-        {
-            ObjectManager.Instance.HideHint();
-            isInRangeOfDeck = false;
-        }
-    }
-
-    /// <summary>
-    /// Gets the enemies player object.
-    /// </summary>
-    /// <returns>Enemy player's object</returns>
-    private GameObject GetEnemyPlayer()
-    {
-        if (playerRole == PlayerRole.PLAYER_A)
-        {
-            return GameObject.FindGameObjectWithTag("PLAYER_B");
-        }
-        else
-        {
-            return GameObject.FindGameObjectWithTag("PLAYER_A");
-        }
-    }
-    
 }

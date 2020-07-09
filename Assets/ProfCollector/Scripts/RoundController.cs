@@ -26,6 +26,7 @@ public enum RoundState {
 /// </summary>
 public class RoundController : NetworkBehaviour
 {
+    #region variables & setup
     /// <summary>
     /// Local player on the server
     /// </summary>
@@ -79,7 +80,6 @@ public class RoundController : NetworkBehaviour
     /// Singleton instance
     /// </summary>
     private static RoundController instance;
-    public static RoundController Instance => instance;
 
     /// <summary>
     /// Contains the state that the controller will go to
@@ -100,7 +100,10 @@ public class RoundController : NetworkBehaviour
     /// <summary>
     /// Cards in a deck
     /// </summary>
-    public const int CARDS_PER_DECK = 5;
+    public const int CARDS_PER_DECK = 2;
+    
+    public static RoundController Instance => instance;
+
 
     /// <summary>
     /// Initializes singleton instance.
@@ -114,7 +117,20 @@ public class RoundController : NetworkBehaviour
         }
         instance = this;
     }
+    
+    /// <summary>
+    /// Start is called before the first frame update.
+    /// </summary>
+    private void Start()
+    {
+        currentState = RoundState.WAITING_FOR_CONNECTION;
+        playersConnected = 0;
+        waitTimer = 0f;
+    }
+    
+    #endregion
 
+    #region pre_start
     /// <summary>
     /// Connects the player to the game and loads it's cards.
     /// </summary>
@@ -149,17 +165,11 @@ public class RoundController : NetworkBehaviour
         currentState = RoundState.PLAYER_A_FIRST_TURN;
         SentGameUpdate();
     }
-
-    /// <summary>
-    /// Start is called before the first frame update.
-    /// </summary>
-    private void Start()
-    {
-        currentState = RoundState.WAITING_FOR_CONNECTION;
-        playersConnected = 0;
-        waitTimer = 0f;
-    }
     
+    #endregion
+    
+    #region after_start
+
     /// <summary>
     /// Update is called once per frame.
     /// Updates the wait timer, if the controller is waiting.
@@ -257,7 +267,7 @@ public class RoundController : NetworkBehaviour
         switch (winStatus)
         {
             case 1: // PLAYER A WON
-                playerBCardIds.Add(playerACardId);
+                playerACardIds.Add(playerACardId);
                 playerACardIds.Add(playerBCardId);
                 afterComparisonState =  playerBCardIds.Count > 0 ? InitializeWait(nextState) : RoundState.PLAYER_A_WON;
                 break;
@@ -365,4 +375,6 @@ public class RoundController : NetworkBehaviour
             winStatus = 0;
         }
     }
+    
+    #endregion
 }
