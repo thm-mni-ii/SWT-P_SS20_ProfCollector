@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 namespace Mirror.Examples.NetworkRoom
 {
@@ -14,12 +14,31 @@ namespace Mirror.Examples.NetworkRoom
         /// <param name="roomPlayer"></param>
         /// <param name="gamePlayer"></param>
         /// <returns>true unless some code in here decides it needs to abort the replacement</returns>
-        public override bool OnRoomServerSceneLoadedForPlayer(GameObject roomPlayer, GameObject gamePlayer)
+        public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnection conn, GameObject roomPlayer, GameObject gamePlayer)
         {
-            PlayerController player = gamePlayer.GetComponent<PlayerController>();
-            player.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
-            player.playerColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
+            playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
             return true;
+        }
+
+        public override void OnRoomStopClient()
+        {
+            // Demonstrates how to get the Network Manager out of DontDestroyOnLoad when
+            // going to the offline scene to avoid collision with the one that lives there.
+            if (gameObject.scene.name == "DontDestroyOnLoad" && !string.IsNullOrEmpty(offlineScene) && SceneManager.GetActiveScene().path != offlineScene)
+                SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+
+            base.OnRoomStopClient();
+        }
+
+        public override void OnRoomStopServer()
+        {
+            // Demonstrates how to get the Network Manager out of DontDestroyOnLoad when
+            // going to the offline scene to avoid collision with the one that lives there.
+            if (gameObject.scene.name == "DontDestroyOnLoad" && !string.IsNullOrEmpty(offlineScene) && SceneManager.GetActiveScene().path != offlineScene)
+                SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+
+            base.OnRoomStopServer();
         }
 
         /*

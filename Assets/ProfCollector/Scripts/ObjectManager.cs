@@ -38,11 +38,11 @@ public class ObjectManager : MonoBehaviour
     {
         DisableCardAGUI();
         DisableCardBGUI();
-        UpdateWaitTimer("");
         this.playerACardsAmountText.text = RoundController.CARDS_PER_DECK.ToString();
         this.playerBCardsAmountText.text = RoundController.CARDS_PER_DECK.ToString();
         toggleHighlightCardA(false);
         toggleHighlightCardB(false);
+        HideHint();
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class ObjectManager : MonoBehaviour
     /// <summary>
     /// Top light in the scene
     /// </summary>
-    [SerializeField] private GameObject sceneLight;
+    [SerializeField] private LightController sceneLight;
 
     /// <summary>
     /// GUI for showing player A's card
@@ -71,11 +71,6 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private CardPopup playerBCardGUI;
     
     /// <summary>
-    /// GUI for wait timer
-    /// </summary>
-    [SerializeField] private Text waitTimer;
-    
-    /// <summary>
     /// GUI for player A card amount
     /// </summary>
     [SerializeField] private TextMesh playerACardsAmountText;
@@ -85,11 +80,16 @@ public class ObjectManager : MonoBehaviour
     /// </summary>
     [SerializeField] private TextMesh playerBCardsAmountText;
 
+    /// <summary>
+    /// Hint text for giving instructions
+    /// </summary>
+    [SerializeField] private Text hintText;
+    
     public CardPopup PlayerACardGui => playerACardGUI;
 
     public CardPopup PlayerBCardGui => playerBCardGUI;
 
-    public GameObject SceneLight => sceneLight;
+    public LightController SceneLight => sceneLight;
 
     /// <summary>
     /// Loads the GUI for player A's card.
@@ -130,15 +130,6 @@ public class ObjectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the wait timer GUI.
-    /// </summary>
-    /// <param name="time">Wait time</param>
-    public void UpdateWaitTimer(string time)
-    {
-        waitTimer.text = time;
-    }
-
-    /// <summary>
     /// Updates the card amount in a deck for a given player.
     /// </summary>
     /// <param name="playerRole">Player with new card amount</param>
@@ -171,5 +162,24 @@ public class ObjectManager : MonoBehaviour
     public void toggleHighlightCardB(bool turnOn)
     {
         cardB.toggleHighlight(turnOn);
+    }
+
+    /// <summary>
+    /// Shows text in hint text.
+    /// </summary>
+    /// <param name="text">Text to show</param>
+    public void ShowHint(string text)
+    {
+        hintText.enabled = true;
+        hintText.text = text;
+    }
+
+    /// <summary>
+    /// Clears the hint text.
+    /// </summary>
+    public void HideHint()
+    {
+        hintText.text = "";
+        hintText.enabled = false;
     }
 }

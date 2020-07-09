@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Mirror
 {
     public class NetworkConnectionToServer : NetworkConnection
     {
-        public override string address => throw new NotImplementedException();
+        static readonly ILogger logger = LogFactory.GetLogger<NetworkConnectionToServer>();
+
+        public override string address => "";
 
         internal override bool Send(ArraySegment<byte> segment, int channelId = Channels.DefaultReliable)
         {
-            if (logNetworkMessages) Debug.Log("ConnectionSend " + this + " bytes:" + BitConverter.ToString(segment.Array, segment.Offset, segment.Count));
+            if (logger.LogEnabled()) logger.Log("ConnectionSend " + this + " bytes:" + BitConverter.ToString(segment.Array, segment.Offset, segment.Count));
 
             // validate packet size first.
             if (ValidatePacketSize(segment, channelId))

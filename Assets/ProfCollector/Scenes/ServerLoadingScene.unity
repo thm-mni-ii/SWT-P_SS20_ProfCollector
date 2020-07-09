@@ -195,7 +195,9 @@ MonoBehaviour:
   port: 7876
   NoDelay: 1
   serverMaxMessageSize: 16384
+  serverMaxReceivesPerTick: 10000
   clientMaxMessageSize: 16384
+  clientMaxReceivesPerTick: 1000
 --- !u!114 &270508679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,13 +239,15 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   startOnHeadless: 1
-  serverTickRate: 30
   showDebugMessages: 0
-  offlineScene: 
-  onlineScene: 
+  serverTickRate: 30
+  offlineScene: Assets/ProfCollector/Scenes/ServerLoadingScene.unity
+  onlineScene: Assets/ProfCollector/Scenes/Gamescene.unity
   transport: {fileID: 270508678}
   networkAddress: localhost
   maxConnections: 4
+  disconnectInactiveConnections: 0
+  disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1480027675339556, guid: 21daf89214c6ee443ad6875b73083c60,
     type: 3}

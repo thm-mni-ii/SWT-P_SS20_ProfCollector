@@ -1,11 +1,13 @@
-﻿using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 namespace Mirror.Authenticators
 {
     [AddComponentMenu("Network/Authenticators/BasicAuthenticator")]
     public class BasicAuthenticator : NetworkAuthenticator
     {
+        static readonly ILogger logger = LogFactory.GetLogger(typeof(BasicAuthenticator));
+
         [Header("Custom Properties")]
 
         // set these in the inspector
@@ -51,12 +53,12 @@ namespace Mirror.Authenticators
                 authPassword = password
             };
 
-            NetworkClient.Send(authRequestMessage);
+            conn.Send(authRequestMessage);
         }
 
         public void OnAuthRequestMessage(NetworkConnection conn, AuthRequestMessage msg)
         {
-            Debug.LogFormat("Authentication Request: {0} {1}", msg.authUsername, msg.authPassword);
+            if (logger.LogEnabled()) logger.LogFormat(LogType.Log, "Authentication Request: {0} {1}", msg.authUsername, msg.authPassword);
 
             // check the credentials by calling your web server, database table, playfab api, or any method appropriate.
             if (msg.authUsername == username && msg.authPassword == password)
@@ -71,7 +73,7 @@ namespace Mirror.Authenticators
                 conn.Send(authResponseMessage);
 
                 // Invoke the event to complete a successful authentication
-                base.OnServerAuthenticated.Invoke(conn);
+                OnServerAuthenticated.Invoke(conn);
             }
             else
             {
@@ -88,22 +90,28 @@ namespace Mirror.Authenticators
                 conn.isAuthenticated = false;
 
                 // disconnect the client after 1 second so that response message gets delivered
-                Invoke(nameof(conn.Disconnect), 1);
+                StartCoroutine(DelayedDisconnect(conn, 1));
             }
+        }
+
+        public IEnumerator DelayedDisconnect(NetworkConnection conn, float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            conn.Disconnect();
         }
 
         public void OnAuthResponseMessage(NetworkConnection conn, AuthResponseMessage msg)
         {
             if (msg.code == 100)
             {
-                Debug.LogFormat("Authentication Response: {0}", msg.message);
+                if (logger.LogEnabled()) logger.LogFormat(LogType.Log, "Authentication Response: {0}", msg.message);
 
                 // Invoke the event to complete a successful authentication
-                base.OnClientAuthenticated.Invoke(conn);
+                OnClientAuthenticated.Invoke(conn);
             }
             else
             {
-                Debug.LogErrorFormat("Authentication Response: {0}", msg.message);
+                logger.LogFormat(LogType.Error, "Authentication Response: {0}", msg.message);
 
                 // Set this on the client for local reference
                 conn.isAuthenticated = false;

@@ -3,95 +3,88 @@ using UnityEngine;
 namespace Mirror.Examples.Additive
 {
     [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(NetworkTransform))]
+    [RequireComponent(typeof(CapsuleCollider))]
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : NetworkBehaviour
     {
-        public override void OnStartServer()
+        public CharacterController characterController;
+        public CapsuleCollider capsuleCollider;
+
+        void OnValidate()
         {
-            base.OnStartServer();
-            playerColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            if (characterController == null)
+                characterController = GetComponent<CharacterController>();
+            if (capsuleCollider == null)
+                capsuleCollider = GetComponent<CapsuleCollider>();
         }
 
-        [SyncVar(hook = nameof(SetColor))]
-        Color playerColor = Color.black;
-
-        // Unity clones the material when GetComponent<Renderer>().material is called
-        // Cache it here and destroy it in OnDestroy to prevent a memory leak
-        Material cachedMaterial;
-
-        void SetColor(Color color)
+        void Start()
         {
-            if (cachedMaterial == null) cachedMaterial = GetComponent<Renderer>().material;
-            cachedMaterial.color = color;
+            capsuleCollider.enabled = isServer;
         }
-
-        void OnDisable()
-        {
-            if (isLocalPlayer)
-            {
-                Camera.main.transform.SetParent(null);
-                Camera.main.transform.localPosition = new Vector3(0f, 50f, 0f);
-                Camera.main.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
-            }
-        }
-
-        void OnDestroy()
-        {
-            Destroy(cachedMaterial);
-        }
-
-        CharacterController characterController;
 
         public override void OnStartLocalPlayer()
         {
-            base.OnStartLocalPlayer();
+            characterController.enabled = true;
 
-            characterController = GetComponent<CharacterController>();
-
+            Camera.main.orthographic = false;
             Camera.main.transform.SetParent(transform);
             Camera.main.transform.localPosition = new Vector3(0f, 3f, -8f);
             Camera.main.transform.localEulerAngles = new Vector3(10f, 0f, 0f);
         }
 
+        void OnDisable()
+        {
+            if (isLocalPlayer && Camera.main != null)
+            {
+                Camera.main.orthographic = true;
+                Camera.main.transform.SetParent(null);
+                Camera.main.transform.localPosition = new Vector3(0f, 70f, 0f);
+                Camera.main.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+            }
+        }
+
         [Header("Movement Settings")]
         public float moveSpeed = 8f;
-        public float turnSpeedAccel = 5f;
-        public float turnSpeedDecel = 5f;
+        public float turnSensitivity = 5f;
         public float maxTurnSpeed = 150f;
 
-        [Header("Jump Settings")]
-        public float jumpSpeed = 0f;
-        public float jumpFactor = .025F;
-
         [Header("Diagnostics")]
-        public float horizontal = 0f;
-        public float vertical = 0f;
-        public float turn = 0f;
+        public float horizontal;
+        public float vertical;
+        public float turn;
+        public float jumpSpeed;
         public bool isGrounded = true;
-        public bool isFalling = false;
+        public bool isFalling;
+        public Vector3 velocity;
 
         void Update()
         {
-            if (!isLocalPlayer) return;
+            if (!isLocalPlayer || !characterController.enabled)
+                return;
 
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
 
-            if (Input.GetKey(KeyCode.Q) && (turn > -maxTurnSpeed))
-                turn -= turnSpeedAccel;
-            else if (Input.GetKey(KeyCode.E) && (turn < maxTurnSpeed))
-                turn += turnSpeedAccel;
-            else if (turn > turnSpeedDecel)
-                turn -= turnSpeedDecel;
-            else if (turn < -turnSpeedDecel)
-                turn += turnSpeedDecel;
-            else
-                turn = 0f;
+            // Q and E cancel each other out, reducing the turn to zero
+            if (Input.GetKey(KeyCode.Q))
+                turn = Mathf.MoveTowards(turn, -maxTurnSpeed, turnSensitivity);
+            if (Input.GetKey(KeyCode.E))
+                turn = Mathf.MoveTowards(turn, maxTurnSpeed, turnSensitivity);
+            if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.E))
+                turn = Mathf.MoveTowards(turn, 0, turnSensitivity);
+            if (!Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
+                turn = Mathf.MoveTowards(turn, 0, turnSensitivity);
 
-            if (!isFalling && Input.GetKey(KeyCode.Space) && (isGrounded || jumpSpeed < 1))
-                jumpSpeed +=  jumpFactor;
-            else if (isGrounded)
+            if (isGrounded)
                 isFalling = false;
-            else
+
+            if ((isGrounded || !isFalling) && jumpSpeed < 1f && Input.GetKey(KeyCode.Space))
+            {
+                jumpSpeed = Mathf.Lerp(jumpSpeed, 1f, 0.5f);
+            }
+            else if (!isGrounded)
             {
                 isFalling = true;
                 jumpSpeed = 0;
@@ -100,7 +93,8 @@ namespace Mirror.Examples.Additive
 
         void FixedUpdate()
         {
-            if (!isLocalPlayer || characterController == null) return;
+            if (!isLocalPlayer || characterController == null)
+                return;
 
             transform.Rotate(0f, turn * Time.fixedDeltaTime, 0f);
 
@@ -115,6 +109,7 @@ namespace Mirror.Examples.Additive
                 characterController.SimpleMove(direction);
 
             isGrounded = characterController.isGrounded;
+            velocity = characterController.velocity;
         }
     }
 }

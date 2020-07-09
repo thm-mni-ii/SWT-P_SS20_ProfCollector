@@ -121,4 +121,26 @@ public class CardPopup : MonoBehaviour
             HighlightProperty(false,i + 1);
         }
     }
+
+    /// <summary>
+    /// Starts a blinking effect on all properties.
+    /// </summary>
+    public void AllPropertiesStartBlinking()
+    {
+        foreach (Button cardProperty in cardProperties)
+        {
+            cardProperty.GetComponent<BlinkingUILoop>().StartBlink();
+        }
+    }
+    
+    /// <summary>
+    /// Stops the blinking effect on all properties.
+    /// </summary>
+    public void AllPropertiesStopBlinking()
+    {
+        foreach (Button cardProperty in cardProperties)
+        {
+            cardProperty.GetComponent<BlinkingUILoop>().StopBlinking();
+        }
+    }
 }
