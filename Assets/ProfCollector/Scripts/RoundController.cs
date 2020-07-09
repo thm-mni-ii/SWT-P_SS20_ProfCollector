@@ -29,7 +29,7 @@ public class RoundController : NetworkBehaviour
     /// <summary>
     /// Local player on the server
     /// </summary>
-    private QuartettClient host;
+    public QuartettClient host;
     
     /// <summary>
     /// Current state that the controller is in
@@ -155,19 +155,18 @@ public class RoundController : NetworkBehaviour
     /// </summary>
     private void Start()
     {
-        host = ClientScene.localPlayer.GetComponent<QuartettClient>();
         currentState = RoundState.WAITING_FOR_CONNECTION;
         playersConnected = 0;
         waitTimer = 0f;
     }
-
+    
     /// <summary>
     /// Update is called once per frame.
     /// Updates the wait timer, if the controller is waiting.
     /// </summary>
     private void Update()
     {
-        if (!ClientScene.localPlayer.isServer) return;
+        if (ClientScene.localPlayer && !ClientScene.localPlayer.isServer) return;
 
         if (currentState.Equals(RoundState.WAIT_FOR_NEXT_ROUND))
         {

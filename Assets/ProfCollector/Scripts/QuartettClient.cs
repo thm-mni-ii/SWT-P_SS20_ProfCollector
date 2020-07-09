@@ -35,8 +35,20 @@ public class QuartettClient : NetworkBehaviour
     /// </summary>
     private RoundState clientState;
     
-    private List<int[]> tmpCardVals;
+    /// <summary>
+    /// Used for workaround: temporary storage for card ids
+    /// </summary>
+    private List<int[]> tmpCardIds;
+    
+    /// <summary>
+    /// Used for workaround: shows if cards can be loaded
+    /// </summary>
     private bool cardsCanBeLoaded;
+
+    /// <summary>
+    /// Shows if the player is in range of his deck
+    /// </summary>
+    private bool isInRangeOfDeck;
 
     /// <summary>
     /// Start is called before the first frame update.
@@ -44,15 +56,36 @@ public class QuartettClient : NetworkBehaviour
     /// </summary>
     private void Start()
     {
-        tmpCardVals = new List<int[]>();
+        isInRangeOfDeck = false;
+        tmpCardIds = new List<int[]>();
         playerInfo = GameServer.Instance.LocalPlayerInfo;
+        
         if (isServer)
         {
-            playerRole = PlayerRole.PLAYER_A;
+            if (hasAuthority)
+            {
+                playerRole = PlayerRole.PLAYER_A;
+                RoundController.Instance.host = this;
+                tag = "PLAYER_A";
+            }
+            else
+            {
+                playerRole = PlayerRole.PLAYER_B;
+                tag = "PLAYER_B";
+            }
         }
         else
         {
-            playerRole = PlayerRole.PLAYER_B;
+            if (hasAuthority)
+            {
+                playerRole = PlayerRole.PLAYER_B;
+                tag = "PLAYER_B";
+            }
+            else
+            {
+                playerRole = PlayerRole.PLAYER_A;
+                tag = "PLAYER_A";
+            }
         }
 
         clientState = RoundState.WAITING_FOR_CONNECTION;
@@ -90,7 +123,7 @@ public class QuartettClient : NetworkBehaviour
                     {
                         int cardId = (int.Parse(cardTuple.Key));
                         int cardAmount = int.Parse(cardTuple.Value.ToString());
-                        tmpCardVals.Add(new []{cardId,cardAmount});
+                        tmpCardIds.Add(new []{cardId,cardAmount});
                     }
                     cardsCanBeLoaded = true;
                 }
@@ -107,7 +140,7 @@ public class QuartettClient : NetworkBehaviour
     private void LoadCardData()
     {
         List<int> tmpCardIds = new List<int>();
-        foreach (int[] cardVal in tmpCardVals)
+        foreach (int[] cardVal in this.tmpCardIds)
         {
             for (int i = 0; i < cardVal[1]; i++)
             {
@@ -130,15 +163,28 @@ public class QuartettClient : NetworkBehaviour
     /// <param name="cardId">Card that was drawn</param>
     private void UpdatedCardGUI(PlayerRole playerRole, int cardId)
     {
-        if (playerRole == PlayerRole.PLAYER_A)
+        if (this.playerRole.Equals(playerRole))
         {
-            ObjectManager.Instance.toggleHighlightCardA(false);
-            ObjectManager.Instance.LoadCardAGUI(cardId);     
-        }
-        else
-        {
-            ObjectManager.Instance.toggleHighlightCardB(false);
-            ObjectManager.Instance.LoadCardBGUI(cardId);  
+            if (playerRole == PlayerRole.PLAYER_A)
+            {
+                ObjectManager.Instance.toggleHighlightCardA(false);
+                ObjectManager.Instance.LoadCardAGUI(cardId);
+
+                if (clientState.Equals(RoundState.PLAYER_A_FIRST_TURN))
+                {
+                    ObjectManager.Instance.PlayerACardGui.AllPropertiesStartBlinking();
+                } 
+            }
+            else
+            {
+                ObjectManager.Instance.toggleHighlightCardB(false);
+                ObjectManager.Instance.LoadCardBGUI(cardId);  
+            
+                if (clientState.Equals(RoundState.PLAYER_B_FIRST_TURN))
+                {
+                    ObjectManager.Instance.PlayerBCardGui.AllPropertiesStartBlinking();
+                }
+            }   
         }
     }
 
@@ -186,28 +232,11 @@ public class QuartettClient : NetworkBehaviour
             {
                 LoadCardData();
             }
-            
-            if (Input.GetMouseButtonDown(0))
+
+            if (IsLegalMove() && isInRangeOfDeck && Input.GetKeyDown(KeyCode.T))
             {
-
-                RaycastHit raycast;
-
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out raycast, 200.0f))
-                {
-
-                    if (raycast.transform)
-                    {
-                        if (IsLocalPlayersCard(raycast.collider.tag))
-                        {
-                            if (IsLegalMove())
-                            {
-                                CmdPickUpCard();
-                            }
-                        }
-                    }
-                }
+                CmdPickUpCard();
+                ObjectManager.Instance.HideHint();
             }
         }
     }
@@ -279,7 +308,7 @@ public class QuartettClient : NetworkBehaviour
     [ClientRpc]
     public void RpcUpdateWaitTimer(string waitTimer)
     {
-        ObjectManager.Instance.UpdateWaitTimer(waitTimer);
+        ObjectManager.Instance.ShowHint(waitTimer);
     }
 
     /// <summary>
@@ -296,6 +325,8 @@ public class QuartettClient : NetworkBehaviour
         switch (clientState)
         {
             case RoundState.PLAYER_A_FIRST_TURN:
+                CheckDrawCardHint();
+                ObjectManager.Instance.SceneLight.ResetLight();
                 ObjectManager.Instance.PlayerACardGui.TurnOffAllPropertyHighlights();
                 ObjectManager.Instance.PlayerBCardGui.TurnOffAllPropertyHighlights();
                 ObjectManager.Instance.toggleHighlightCardA(true);
@@ -303,12 +334,17 @@ public class QuartettClient : NetworkBehaviour
                 ObjectManager.Instance.DisableCardBGUI();
                 break;
             case RoundState.PLAYER_B_SECOND_TURN:
+                CheckDrawCardHint();
+                ObjectManager.Instance.PlayerACardGui.AllPropertiesStopBlinking();
                 ObjectManager.Instance.toggleHighlightCardB(true);
                 ObjectManager.Instance.DisableCardBGUI();
                 ObjectManager.Instance.LoadCardAGUI(playerACardId);
                 ObjectManager.Instance.PlayerACardGui.HighlightProperty(true,valIdx);
+                
                 break;
             case RoundState.PLAYER_B_FIRST_TURN:
+                CheckDrawCardHint();
+                ObjectManager.Instance.SceneLight.ResetLight();
                 ObjectManager.Instance.PlayerACardGui.TurnOffAllPropertyHighlights();
                 ObjectManager.Instance.PlayerBCardGui.TurnOffAllPropertyHighlights();
                 ObjectManager.Instance.toggleHighlightCardB(true);
@@ -316,6 +352,8 @@ public class QuartettClient : NetworkBehaviour
                 ObjectManager.Instance.DisableCardBGUI();
                 break;
             case RoundState.PLAYER_A_SECOND_TURN:
+                CheckDrawCardHint();
+                ObjectManager.Instance.PlayerBCardGui.AllPropertiesStopBlinking();
                 ObjectManager.Instance.toggleHighlightCardA(true);
                 ObjectManager.Instance.DisableCardAGUI();
                 ObjectManager.Instance.LoadCardBGUI(playerBCardId);
@@ -332,6 +370,91 @@ public class QuartettClient : NetworkBehaviour
                 ObjectManager.Instance.PlayerBCardGui.HighlightProperty(true,valIdx);
                 break;
         }
+
+        // Processes win
+        switch (winStatus)
+        {
+            case -1:
+                break;
+            case 0:
+                break;
+            case 1:
+                if (playerRole == PlayerRole.PLAYER_A)
+                {
+                    ObjectManager.Instance.SceneLight.LookAtPlayer(transform);
+                }
+                else
+                {
+                    ObjectManager.Instance.SceneLight.LookAtPlayer(GetEnemyPlayer().transform);
+                }
+                break;
+            case 2:
+                if (playerRole == PlayerRole.PLAYER_B)
+                {
+                    ObjectManager.Instance.SceneLight.LookAtPlayer(transform);
+                }
+                else
+                {
+                    ObjectManager.Instance.SceneLight.LookAtPlayer(GetEnemyPlayer().transform);
+                }
+                break;
+        }
     }
 
+    /// <summary>
+    /// Checks if the player walked next to his deck.
+    /// </summary>
+    /// <param name="other">Trigger that entered</param>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsLocalPlayersCard(other.tag))
+        {
+            isInRangeOfDeck = true;
+            
+            if(IsLegalMove()){
+                ObjectManager.Instance.ShowHint("Press <color=#BC3644><b>T</b></color>\nto draw a Card");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if the draw a card hint should be shown.
+    /// </summary>
+    private void CheckDrawCardHint()
+    {
+        if (isInRangeOfDeck && IsLegalMove())
+        {
+            ObjectManager.Instance.ShowHint("Press <color=#BC3644><b>T</b></color>\nto draw a Card");
+        }
+    }
+    
+    /// <summary>
+    /// Checks if the player walked away from his deck.
+    /// </summary>
+    /// <param name="other">Trigger that entered</param>
+    private void OnTriggerExit(Collider other)
+    {
+        if (IsLocalPlayersCard(other.tag))
+        {
+            ObjectManager.Instance.HideHint();
+            isInRangeOfDeck = false;
+        }
+    }
+
+    /// <summary>
+    /// Gets the enemies player object.
+    /// </summary>
+    /// <returns>Enemy player's object</returns>
+    private GameObject GetEnemyPlayer()
+    {
+        if (playerRole == PlayerRole.PLAYER_A)
+        {
+            return GameObject.FindGameObjectWithTag("PLAYER_B");
+        }
+        else
+        {
+            return GameObject.FindGameObjectWithTag("PLAYER_A");
+        }
+    }
+    
 }

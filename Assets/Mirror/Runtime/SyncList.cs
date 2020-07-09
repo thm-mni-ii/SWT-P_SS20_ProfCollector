@@ -35,19 +35,10 @@ namespace Mirror
         protected override bool DeserializeItem(NetworkReader reader) => reader.ReadBoolean();
     }
 
-    // Original UNET name is SyncListStruct and original Weaver weavers anything
-    // that contains the name 'SyncListStruct', without considering the name-
-    // space.
-    [EditorBrowsable(EditorBrowsableState.Never), Obsolete("Use SyncList<MyStruct> instead")]
-    public class SyncListSTRUCT<T> : SyncList<T> where T : struct
-    {
-        public T GetItem(int i) => base[i];
-    }
-
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class SyncList<T> : IList<T>, IReadOnlyList<T>, SyncObject
     {
-        public delegate void SyncListChanged(Operation op, int itemIndex, T item);
+        public delegate void SyncListChanged(Operation op, int itemIndex, T oldItem, T newItem);
 
         readonly IList<T> objects;
         readonly IEqualityComparer<T> comparer;
@@ -61,11 +52,8 @@ namespace Mirror
             OP_ADD,
             OP_CLEAR,
             OP_INSERT,
-            [Obsolete("Lists now pass OP_REMOVEAT")]
-            OP_REMOVE,
             OP_REMOVEAT,
-            OP_SET,
-            OP_DIRTY
+            OP_SET
         }
 
         struct Change
@@ -85,7 +73,6 @@ namespace Mirror
         protected virtual void SerializeItem(NetworkWriter writer, T item) { }
         protected virtual T DeserializeItem(NetworkReader reader) => default;
 
-
         protected SyncList(IEqualityComparer<T> comparer = null)
         {
             this.comparer = comparer ?? EqualityComparer<T>.Default;
@@ -104,7 +91,15 @@ namespace Mirror
         // this should be called after a successfull sync
         public void Flush() => changes.Clear();
 
-        void AddOperation(Operation op, int itemIndex, T item)
+        public void Reset()
+        {
+            IsReadOnly = false;
+            changes.Clear();
+            changesAhead = 0;
+            objects.Clear();
+        }
+
+        void AddOperation(Operation op, int itemIndex, T oldItem, T newItem)
         {
             if (IsReadOnly)
             {
@@ -115,15 +110,13 @@ namespace Mirror
             {
                 operation = op,
                 index = itemIndex,
-                item = item
+                item = newItem
             };
 
             changes.Add(change);
 
-            Callback?.Invoke(op, itemIndex, item);
+            Callback?.Invoke(op, itemIndex, oldItem, newItem);
         }
-
-        void AddOperation(Operation op, int itemIndex) => AddOperation(op, itemIndex, default);
 
         public void OnSerializeAll(NetworkWriter writer)
         {
@@ -168,7 +161,6 @@ namespace Mirror
 
                     case Operation.OP_INSERT:
                     case Operation.OP_SET:
-                    case Operation.OP_DIRTY:
                         writer.WritePackedUInt32((uint)change.index);
                         SerializeItem(writer, change.item);
                         break;
@@ -214,16 +206,17 @@ namespace Mirror
                 // that we have not applied yet
                 bool apply = changesAhead == 0;
                 int index = 0;
-                T item = default;
+                T oldItem = default;
+                T newItem = default;
 
                 switch (operation)
                 {
                     case Operation.OP_ADD:
-                        item = DeserializeItem(reader);
+                        newItem = DeserializeItem(reader);
                         if (apply)
                         {
                             index = objects.Count;
-                            objects.Add(item);
+                            objects.Add(newItem);
                         }
                         break;
 
@@ -236,10 +229,10 @@ namespace Mirror
 
                     case Operation.OP_INSERT:
                         index = (int)reader.ReadPackedUInt32();
-                        item = DeserializeItem(reader);
+                        newItem = DeserializeItem(reader);
                         if (apply)
                         {
-                            objects.Insert(index, item);
+                            objects.Insert(index, newItem);
                         }
                         break;
 
@@ -247,25 +240,25 @@ namespace Mirror
                         index = (int)reader.ReadPackedUInt32();
                         if (apply)
                         {
-                            item = objects[index];
+                            oldItem = objects[index];
                             objects.RemoveAt(index);
                         }
                         break;
 
                     case Operation.OP_SET:
-                    case Operation.OP_DIRTY:
                         index = (int)reader.ReadPackedUInt32();
-                        item = DeserializeItem(reader);
+                        newItem = DeserializeItem(reader);
                         if (apply)
                         {
-                            objects[index] = item;
+                            oldItem = objects[index];
+                            objects[index] = newItem;
                         }
                         break;
                 }
 
                 if (apply)
                 {
-                    Callback?.Invoke(operation, index, item);
+                    Callback?.Invoke(operation, index, oldItem, newItem);
                 }
                 // we just skipped this change
                 else
@@ -278,13 +271,21 @@ namespace Mirror
         public void Add(T item)
         {
             objects.Add(item);
-            AddOperation(Operation.OP_ADD, objects.Count - 1, item);
+            AddOperation(Operation.OP_ADD, objects.Count - 1, default, item);
+        }
+
+        public void AddRange(IEnumerable<T> range)
+        {
+            foreach (T entry in range)
+            {
+                Add(entry);
+            }
         }
 
         public void Clear()
         {
             objects.Clear();
-            AddOperation(Operation.OP_CLEAR, 0);
+            AddOperation(Operation.OP_CLEAR, 0, default, default);
         }
 
         public bool Contains(T item) => IndexOf(item) >= 0;
@@ -307,10 +308,34 @@ namespace Mirror
             return -1;
         }
 
+        public T Find(Predicate<T> match)
+        {
+            int i = FindIndex(match);
+            return (i != -1) ? objects[i] : default;
+        }
+
+        public List<T> FindAll(Predicate<T> match)
+        {
+            List<T> results = new List<T>();
+            for (int i = 0; i < objects.Count; ++i)
+                if (match(objects[i]))
+                    results.Add(objects[i]);
+            return results;
+        }
+
         public void Insert(int index, T item)
         {
             objects.Insert(index, item);
-            AddOperation(Operation.OP_INSERT, index, item);
+            AddOperation(Operation.OP_INSERT, index, default, item);
+        }
+
+        public void InsertRange(int index, IEnumerable<T> range)
+        {
+            foreach (T entry in range)
+            {
+                Insert(index, entry);
+                index++;
+            }
         }
 
         public bool Remove(T item)
@@ -326,13 +351,24 @@ namespace Mirror
 
         public void RemoveAt(int index)
         {
+            T oldItem = objects[index];
             objects.RemoveAt(index);
-            AddOperation(Operation.OP_REMOVEAT, index);
+            AddOperation(Operation.OP_REMOVEAT, index, oldItem, default);
         }
 
-        public void Dirty(int index)
+        public int RemoveAll(Predicate<T> match)
         {
-            AddOperation(Operation.OP_DIRTY, index, objects[index]);
+            List<T> toRemove = new List<T>();
+            for (int i = 0; i < objects.Count; ++i)
+                if (match(objects[i]))
+                    toRemove.Add(objects[i]);
+
+            foreach (T entry in toRemove)
+            {
+                Remove(entry);
+            }
+
+            return toRemove.Count;
         }
 
         public T this[int i]
@@ -342,8 +378,9 @@ namespace Mirror
             {
                 if (!comparer.Equals(objects[i], value))
                 {
+                    T oldItem = objects[i];
                     objects[i] = value;
-                    AddOperation(Operation.OP_SET, i, value);
+                    AddOperation(Operation.OP_SET, i, oldItem, value);
                 }
             }
         }
@@ -389,7 +426,7 @@ namespace Mirror
 
             public void Reset() => index = -1;
             object IEnumerator.Current => Current;
-            public void Dispose() {}
+            public void Dispose() { }
         }
     }
 }

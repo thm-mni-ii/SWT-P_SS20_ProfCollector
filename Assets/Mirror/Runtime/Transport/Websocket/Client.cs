@@ -1,14 +1,11 @@
 #if !UNITY_WEBGL || UNITY_EDITOR
 
 using System;
-using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Ninja.WebSockets;
-using UnityEngine;
 
 namespace Mirror.Websocket
 {
@@ -82,6 +79,8 @@ namespace Mirror.Websocket
             }
         }
 
+        public bool enabled;
+
         async Task ReceiveLoop(WebSocket webSocket, CancellationToken token)
         {
             byte[] buffer = new byte[MaxMessageSize];
@@ -90,6 +89,7 @@ namespace Mirror.Websocket
             {
                 WebSocketReceiveResult result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), token);
 
+                await Task.Run(WaitForEnabled);
 
                 if (result == null)
                     break;
@@ -111,6 +111,17 @@ namespace Mirror.Websocket
                     ReceivedError?.Invoke(exception);
                 }
             }
+        }
+
+        void WaitForEnabled()
+        {
+            while (!enabled) { Task.Delay(10); }
+        }
+
+        public bool ProcessClientMessage()
+        {
+            // message in standalone client don't use queue to process
+            return false;
         }
 
         // a message might come splitted in multiple frames
@@ -144,7 +155,7 @@ namespace Mirror.Websocket
             if (webSocket != null)
             {
                 // close client
-                webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure,"", CancellationToken.None);
+                webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
                 webSocket = null;
                 Connecting = false;
                 IsConnected = false;
@@ -171,10 +182,9 @@ namespace Mirror.Websocket
             }
         }
 
-
         public override string ToString()
         {
-            if (IsConnected )
+            if (IsConnected)
             {
                 return $"Websocket connected to {uri}";
             }
