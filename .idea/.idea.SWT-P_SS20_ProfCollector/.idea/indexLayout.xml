@@ -16,9 +16,9 @@
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>Docs</Path>
       <Path>Library</Path>
       <Path>Temp</Path>
-      <Path>docs</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>
