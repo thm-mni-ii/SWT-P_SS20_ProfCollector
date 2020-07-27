@@ -8,6 +8,7 @@ TagManager:
   - CardA
   - PLAYER_A
   - PLAYER_B
+  - GameManager
   layers:
   - Default
   - TransparentFX

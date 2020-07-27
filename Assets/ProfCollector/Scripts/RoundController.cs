@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Mirror;
 using Mirror.Examples.Basic;
 using UnityEngine;
@@ -103,8 +104,8 @@ public class RoundController : NetworkBehaviour
     public const int CARDS_PER_DECK = 2;
     
     public static RoundController Instance => instance;
-
-
+    
+    
     /// <summary>
     /// Initializes singleton instance.
     /// </summary>
@@ -376,5 +377,54 @@ public class RoundController : NetworkBehaviour
         }
     }
     
+    #endregion
+
+    #region Getter
+
+    public int[] getPlayerACards()
+    {
+        return playerACardIds.ToArray();
+    }
+    
+    public int[] getPlayerBCards()
+    {
+        return playerBCardIds.ToArray();
+    }
+
+    public int getPlayerACardID()
+    {
+        return playerACardId;
+    }
+
+    public int getPlayerBCardID()
+    {
+        return playerBCardId;
+    }
+    
+    public RoundState getCurrentState()
+    {
+        return currentState;
+    }
+
+    public int getPlayersConnected()
+    {
+        return playersConnected;
+    }
+
+    public float getWaitTimer()
+    {
+        return waitTimer;
+    }
+    
+    #endregion
+
+    #region Setter
+
+    public void setPlayersConnected(int setter)
+    {
+        playersConnected = setter;
+    }
+
+
     #endregion
 }

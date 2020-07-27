@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 40881145}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,8 +582,8 @@ MonoBehaviour:
   playerACardsAmountText: {fileID: 1590559641}
   playerBCardsAmountText: {fileID: 214186137}
   hintText: {fileID: 1085211204}
-  particleSystemA: {fileID: 456233596}
-  particleSystemB: {fileID: 509281042}
+  confettiA: {fileID: 0}
+  confettiB: {fileID: 0}
 --- !u!1 &63761564
 GameObject:
   m_ObjectHideFlags: 0
