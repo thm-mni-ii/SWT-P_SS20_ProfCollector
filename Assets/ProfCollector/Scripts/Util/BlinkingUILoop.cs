@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -108,4 +110,21 @@ public class BlinkingUILoop : MonoBehaviour
         uiToToggle.color = oldColor;
         blinkTimer = 0f;
     }
+
+
+    #region Getter
+
+    public bool getFading() => isFading;
+    public float getblinkTimer() => blinkTimer;
+    public bool getActiveStatus() => isActive;
+
+    #endregion
+
+    #region Setter
+
+    public void setBlinkRate(float rate) => blinkRate = rate;
+    public void setUIImage(Image img) => uiToToggle = img;
+
+    #endregion
+
 }
