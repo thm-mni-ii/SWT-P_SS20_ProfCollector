@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
@@ -143,4 +144,45 @@ public class CardPopup : MonoBehaviour
             cardProperty.GetComponent<BlinkingUILoop>().StopBlinking();
         }
     }
+
+
+    #region Getter
+
+    public Text getCardName => cardName;
+    
+    public Text getCardVal1 => cardVal1;
+    
+    public Text getCardVal2 => cardVal2;
+
+    public Text getCardVal3 => cardVal3;
+    
+    public Button[] getButtons => cardProperties;
+    
+    public Color getNormalColor => normalColor;
+    
+    public Color getHighlightedColor => highlightedColor;
+
+
+    #endregion
+    
+    
+    #region Setter
+    public void setCardName(char[] s) => cardName.text = new String(s);
+    /*
+    public Text getCardVal1 => cardVal1;
+    
+    public Text getCardVal2 => cardVal2;
+
+    public Text getCardVal3 => cardVal3;
+    
+    public Button[] getButtons => cardProperties;
+    
+    public Color getNormalColor => normalColor;
+    
+    public Color getHighlightedColor => highlightedColor;
+
+*/
+    #endregion
+
+    
 }

@@ -23,8 +23,8 @@ namespace Tests
 
             manager = freshManager;
             CardLoader loader = new GameObject().AddComponent<CardLoader>();
-            loader.loadCards();
             CardLoader.SetInstance(loader);
+            loader.loadCards();
             manager.LoadCardAGUI(cardID);
             
             Assert.AreEqual(true, manager.PlayerACardGui.enabled);

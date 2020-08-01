@@ -10,11 +10,12 @@ using UnityEngine.Video;
 /// </summary>
 public class PlayerInfo
 {
+    public string name;
+    public bool isHost;
     public PlayerInfo(string name, bool isHost)
     {
         this.name = name;
         this.isHost = isHost;
     }
-    public string name;
-    public bool isHost;
+   
 }
