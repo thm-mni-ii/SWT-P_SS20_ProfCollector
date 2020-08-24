@@ -9,6 +9,12 @@ TagManager:
   - PLAYER_A
   - PLAYER_B
   - GameManager
+  - Applaus
+  - LosingSound
+  - HornSound
+  - RoundWinSound
+  - RoundLoseSound
+  - PlayerPrefab
   layers:
   - Default
   - TransparentFX

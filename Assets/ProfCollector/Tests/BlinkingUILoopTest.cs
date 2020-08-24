@@ -23,7 +23,6 @@ namespace Tests
             Assert.AreEqual(true, blinkingUiLoop.getFading());
             Assert.AreEqual(0.25f, blinkingUiLoop.getblinkTimer());
             Assert.AreEqual(true, blinkingUiLoop.getActiveStatus());
-
         }
         
         [Test]
@@ -33,7 +32,6 @@ namespace Tests
             blinkingUiLoop.setUIImage(new GameObject().AddComponent<Image>());
             blinkingUiLoop.StopBlinking();
 
-            Assert.AreEqual(false, blinkingUiLoop.getFading());
             Assert.AreEqual(0f, blinkingUiLoop.getblinkTimer());
             Assert.AreEqual(false, blinkingUiLoop.getActiveStatus());
 
