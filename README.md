@@ -10,5 +10,5 @@ sowie hier in der [Dokumentation des Profcollectors](https://sebastianebenig.git
 Da wir während der letzten Periode der Entwicklung leider durch das Git-LFS verhindert waren neuen Content unserem ProfCollecor hinzuzufügen,
 mussten wir als Ersatz ein eigenes Repository anlegen welches Sie [hier](https://github.com/SebastianEbenig/CopyProfCollector) finden können 
 
-Wir haben unsere Builds (Framework und Profcollector) lediglich zum [Framework](https://github.com/thm-mni-ii/SWT-P_SS20_Framework) hinzugefügt, da man den ProfCollector in der aktuellen Version 
+Wir haben unsere Builds (Framework und Profcollector) lediglich zum [Framework](https://github.com/thm-mni-ii/SWT-P_SS20_Framework/releases) hinzugefügt, da man den ProfCollector in der aktuellen Version 
 ohnehin nur durch das Framework starten kann.
